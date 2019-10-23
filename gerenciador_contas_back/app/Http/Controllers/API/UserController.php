@@ -22,11 +22,16 @@ class UserController extends Controller
     public function login(){
         if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){
             $user = Auth::user();
-            $success['token'] =  $user->createToken('MyApp')->accessToken;
-            return response()->json(['success' => $success], $this-> successStatus);
+            $token =  $user->createToken('GerenciadorContas')->accessToken;
+            return response()->json(
+                [
+                    'message' => "Login realizado com sucesso",
+                    'token' => $token,
+                    'user' => $user
+                    ], $this-> successStatus);
         }
         else{
-            return response()->json(['error'=>'Unauthorised'], 401);
+            return response()->json(['error'=>'Não foi possivel fazer o login'], 401);
         }
     }
     /**
@@ -48,7 +53,7 @@ class UserController extends Controller
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
         $user = User::create($input);
-        $success['token'] =  $user->createToken('MyApp')-> accessToken;
+        $success['token'] =  $user->createToken('GerenciadorContas')-> accessToken;
         $success['name'] =  $user->name;
         return response()->json(['success'=>$success], $this-> successStatus);
     }
