@@ -8,8 +8,8 @@
           <div class="col-lg-5 d-none d-lg-block background-register">
              
           </div>
-          <div class="col-lg-7">
-            <div class="p-5">
+          <div class="col-lg-7" style="height: 400px;">
+            <div v-if="!loading" class="p-5">
               <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4">Criar uma conta!</h1>
               </div>
@@ -39,7 +39,7 @@
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input v-model="form.senha" 
+                    <input v-model="form.password" 
                     type="password" 
                     class="form-control"
                     placeholder="Senha"
@@ -47,7 +47,7 @@
                     >
                   </div>
                   <div class="col-sm-6">
-                    <input v-model="form.confSenha" type="password" 
+                    <input v-model="form.c_password" type="password" 
                     class="form-control" 
                     placeholder="Confirmação de senha"
                     required>
@@ -62,7 +62,8 @@
               <div class="text-center">
                 <a class="small" href="login.html">Already have an account? Login!</a>
               </div>
-            </div>
+            </div>  
+            <div v-else class="mx-auto loading" style="height: 400px;"></div> 
           </div>
         </div>
       </div>
@@ -73,6 +74,9 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
+
 export default {
     name: 'Sign',
     data: () => ({
@@ -80,21 +84,33 @@ export default {
             nome: '',
             sobrenome: '',
             email: '',
-            senha: '',
-            confSenha: '',
+            password: '',
+            c_password: '',
+            name: ''
         },
         erros: {
             verificacao: false,
             msg: ''
-        }
+        },
+        loading: false,
     }),
     methods: {
-        submit(){
+        ...mapActions('auth', ['ActionSign']),
+        async submit(){
+            this.setName();
             this.limparVerificacao();
-            if(this.form.senha != this.form.confSenha){
+            if(this.form.password != this.form.c_password){
                 this.adicionarErro('Senhas não conferem!')
             }else{
-                console.log(this.form);
+                this.loading = true;
+                try{
+                  await this.ActionSign(this.form);
+                  this.$router.push({name: 'home'});   
+                }catch{
+                  alert('Erro ao tentar realizar o cadastro. tente novamente.')
+                }finally{
+                  this.loading = false;
+                }
             }
         },
         limparVerificacao(){
@@ -104,16 +120,38 @@ export default {
         adicionarErro(msg){
             this.erros.verificacao = true;
             this.erros.msg = msg;
+        },
+        setName: function(){
+          this.form.name = this.form.nome + ' ' + this.form.sobrenome;
         }
-    }
+    },
 }
 </script>
 
 <style>
 .background-register{
-    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSEq3ECYUPDFObHTvqGnt-uVcTJLdh_jbYqIQe0KwGxWGkszKos");
-    background-position: left; /* Center the image */
-    background-repeat: no-repeat; /* Do not repeat the image */
+    background-image: url("../assets/images/background_sign.jpg");
+    background-position: left;
+    background-repeat: no-repeat;
     background-size: cover;
+}
+
+.centralizar-v{
+  text-align: center;
+  vertical-align:middle;
+  display:table-cell;
+}
+
+.centralizar-h{
+  left: 50%; 
+  position: absolute; 
+  transform: translateX(-50%);
+}
+
+.loading {
+  background-image: url("../assets/images/load.gif");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 8cm;
 }
 </style>
