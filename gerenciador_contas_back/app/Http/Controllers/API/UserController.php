@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -50,12 +51,20 @@ class UserController extends Controller
         if ($validator->fails()) {
             return response()->json(['error'=>$validator->errors()], 401);
         }
+
+        if(User::where('email', $request->get('email'))->get()->count()){
+            return response()->json(['error'=>'Já existe um usuário com o email informado.'], 401);
+        }
+
+
 //        $input = $request->all();
 //        $input['password'] = bcrypt($input['password']);
 //        $user = User::create($input);
 //        $success['token'] =  $user->createToken('GerenciadorContas')-> accessToken;
-        $success['name'] =  'OK';//$user->name;
-        return response()->json(['success'=>$success], $this-> successStatus);
+//        $success['name'] = $user->name;
+        return response()->json([
+            'data'=>'Já existe um usuário com o email informado.',
+        ]);
     }
     /**
      * details api

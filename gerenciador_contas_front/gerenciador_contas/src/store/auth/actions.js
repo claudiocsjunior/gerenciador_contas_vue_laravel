@@ -1,15 +1,11 @@
 import * as types from './mutation-types';
 
 export const ActionSign = ({commit}, payload) => {
-      
-    console.log(payload);
-    return axios({
-        method: 'post',
-        url: 'register',
-        data: payload,
-        config
-      })
-    .then(function (response) {
-        console.log(response);
-    });
+    let formData = new FormData();
+    Object.keys(payload).forEach(key => formData.append(key, payload[key]));
+    return  axios.post('/register', formData)
+    .then(({ data }) => {
+         console.log(data)
+      });
+
 };

@@ -97,21 +97,20 @@ export default {
     methods: {
         ...mapActions('auth', ['ActionSign']),
         async submit(){
+          try{
             this.setName();
             this.limparVerificacao();
             if(this.form.password != this.form.c_password){
                 this.adicionarErro('Senhas não conferem!')
             }else{
-                this.loading = true;
-                try{
-                  await this.ActionSign(this.form);
-                  this.$router.push({name: 'home'});   
-                }catch{
-                  alert('Erro ao tentar realizar o cadastro. tente novamente.')
-                }finally{
-                  this.loading = false;
-                }
+              this.loading = true;
+              await this.ActionSign(this.form);
+              this.loading = false;
+              this.$router.push({name: 'home'});   
             }
+          }catch(e){
+            console.error(e);
+          }
         },
         limparVerificacao(){
             this.erros.verificacao = false;
