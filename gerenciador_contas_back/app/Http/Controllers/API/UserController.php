@@ -49,22 +49,24 @@ class UserController extends Controller
             'c_password' => 'required|same:password',
         ]);
         if ($validator->fails()) {
-            return response()->json(['error'=>$validator->errors()], 401);
+            return $this->response(['error'=>$validator->errors()], 401);
         }
 
         if(User::where('email', $request->get('email'))->get()->count()){
-            return response()->json(['error'=>'Já existe um usuário com o email informado.'], 401);
+            return $this->response(['error'=>'Já existe um usuário com o email informado.'], 401);
         }
 
 
-//        $input = $request->all();
-//        $input['password'] = bcrypt($input['password']);
-//        $user = User::create($input);
-//        $success['token'] =  $user->createToken('GerenciadorContas')-> accessToken;
-//        $success['name'] = $user->name;
-        return response()->json([
-            'data'=>'Já existe um usuário com o email informado.',
-        ]);
+        $input = $request->all();
+        $input['password'] = bcrypt($input['password']);
+        $user = User::create($input);
+        $token =  $user->createToken('GerenciadorContas')-> accessToken;
+        $user = $user->name;
+        return $this->response([
+            'message' => "Login realizado com sucesso",
+            'token' => $token,
+            'user' => $user
+        ], $this->successStatus);
     }
     /**
      * details api

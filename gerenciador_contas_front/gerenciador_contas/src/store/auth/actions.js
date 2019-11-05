@@ -5,7 +5,9 @@ export const ActionSign = ({commit}, payload) => {
     Object.keys(payload).forEach(key => formData.append(key, payload[key]));
     return  axios.post('/register', formData)
     .then(({ data }) => {
-         console.log(data)
-      });
-
+        return {verificacao: false, msg: ''};
+      })
+    .catch(error => {
+        return {verificacao: true, msg: error.response.data != undefined ? error.response.data.error : 'Erro ao realizar cadastro'};
+    });
 };

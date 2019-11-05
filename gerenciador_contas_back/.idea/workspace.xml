@@ -133,7 +133,7 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
@@ -175,7 +175,8 @@
       <workItem from="1572309153780" duration="4268000" />
       <workItem from="1572399143521" duration="813000" />
       <workItem from="1572571740427" duration="4229000" />
-      <workItem from="1572646514967" duration="12444000" />
+      <workItem from="1572646514967" duration="13040000" />
+      <workItem from="1572906929371" duration="149000" />
     </task>
     <servers />
   </component>

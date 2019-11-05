@@ -8,7 +8,7 @@
           <div class="col-lg-5 d-none d-lg-block background-register">
              
           </div>
-          <div class="col-lg-7" style="height: 400px;">
+          <div class="col-lg-7" style="height: 500px;">
             <div v-if="!loading" class="p-5">
               <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4">Criar uma conta!</h1>
@@ -104,12 +104,13 @@ export default {
                 this.adicionarErro('Senhas não conferem!')
             }else{
               this.loading = true;
-              await this.ActionSign(this.form);
+              this.erros = await this.ActionSign(this.form);
               this.loading = false;
-              this.$router.push({name: 'home'});   
+              if(!this.erros.verificacao)
+                this.$router.push({name: 'home'});
             }
           }catch(e){
-            console.error(e);
+            console.error(e.data);
           }
         },
         limparVerificacao(){
