@@ -1,4 +1,5 @@
 import sign from './sign';
+import login from './login';
 
 export default [
     {
@@ -12,4 +13,5 @@ export default [
         component: () => import('../views/About.vue')
     },
     ...sign,
+    ...login,
 ];

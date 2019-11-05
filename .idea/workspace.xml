@@ -162,7 +162,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1572907079636</updated>
-      <workItem from="1572907080792" duration="4965000" />
+      <workItem from="1572907080792" duration="10405000" />
     </task>
     <servers />
   </component>
@@ -187,6 +187,12 @@
           <url>file://$PROJECT_DIR$/gerenciador_contas_back/app/Http/Controllers/API/UserController.php</url>
           <line>54</line>
           <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/gerenciador_contas_front/gerenciador_contas/src/views/Login.vue</url>
+          <line>62</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

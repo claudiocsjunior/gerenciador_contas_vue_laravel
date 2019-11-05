@@ -1,2 +1,10 @@
 @import '../../../node_modules/bootstrap/scss/bootstrap.scss';
 @import '../../../node_modules/bootstrap-vue/src/index.scss';
+@import "../../../node_modules/startbootstrap-sb-admin-2/scss/sb-admin-2.scss";
+
+.loading {
+  background-image: url("../images/load.gif");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 8cm;
+}

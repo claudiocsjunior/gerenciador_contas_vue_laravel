@@ -4,4 +4,4 @@ export default[
         name: 'sign',
         component: () => import('../views/Sign.vue')
     },
-];
+]
