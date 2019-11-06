@@ -2,6 +2,7 @@
 
 import Vue from 'vue';
 import axios from "axios";
+import * as storage from '../storage/user/storage'
 
 // Full config:  https://github.com/axios/axios#request-config
 // axios.defaults.baseURL = process.env.baseURL || process.env.apiUrl || '';
@@ -11,7 +12,7 @@ axios.defaults.headers.post['Content-Type'] = 'application/json';
 let config = {
   //baseURL:'http://guarded-headland-11685.herokuapp.com',
   baseURL: 'http://localhost:9000/api',
-  // baseURL: process.env.baseURL || process.env.apiUrl || ""
+  // baseURL: process.env.basexURL || process.env.apiUrl || ""
   timeout: 60 * 1000, // Timeout
   //withCredentials: true, // Check cross-site Access-Control
   crossDomain: true,
@@ -21,7 +22,13 @@ const _axios = axios.create(config);
 
 _axios.interceptors.request.use(
   function(config) {
-    // Do something before request is sent
+    // const token = storage.getLocalToken();
+    //
+    // if ( token != null ) {
+    //   config.headers.common['Authorization'] = 'Bearer '+ token;
+    //   config.headers.common['accept'] = 'application/json';
+    // }
+
     return config;
   },
   function(error) {

@@ -24,15 +24,16 @@ class UserController extends Controller
         if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){
             $user = Auth::user();
             $token =  $user->createToken('GerenciadorContas')->accessToken;
-            return response()->json(
-                [
-                    'message' => "Login realizado com sucesso",
-                    'token' => $token,
-                    'user' => $user
-                    ], $this-> successStatus);
+            return $this->response([
+                'message' => "Login realizado com sucesso",
+                'token' => $token,
+                'user' => $user
+            ], $this->successStatus);
         }
         else{
-            return response()->json(['error'=>'Não foi possivel fazer o login'], 401);
+            return $this->response([
+                'error' => "Não foi possivel fazer o login, email ou senha não confere.",
+            ], 401);
         }
     }
     /**
@@ -76,6 +77,9 @@ class UserController extends Controller
     public function details()
     {
         $user = Auth::user();
-        return response()->json(['user  ' => $user], $this-> successStatus);
+        return $this->response([
+            'message' => "User retornado com sucesso",
+            'user' => $user
+        ], $this->successStatus);
     }
 }

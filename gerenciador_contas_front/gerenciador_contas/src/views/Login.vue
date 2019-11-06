@@ -17,6 +17,9 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Bem Vindo de volta!</h1>
                                     </div>
+                                    <div v-if="erros.verificacao" class="alert alert-danger" role="alert">
+                                        {{ erros.msg }}
+                                    </div>
                                     <form @submit.prevent.stop="submit()" class="user">
                                         <div class="form-group">
                                             <input v-model="form.email"
@@ -75,12 +78,20 @@ export default {
             password: ''
         },
         loading: false,
+        erros: {
+            verificacao: false,
+            msg: ''
+        },
     }),
     methods: {
         ...mapActions('auth', ['ActionLogin']),
         async submit(){
             try {
-                await this.ActionLogin(this.form);
+                this.loading = true;
+                this.erros = await this.ActionLogin(this.form);
+                this.loading = false;
+                if(!this.erros.verificacao)
+                    this.$router.push({name: 'home'});
             }catch (e) {
                 console.log(e);
             }
