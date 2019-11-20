@@ -11,7 +11,7 @@ export default async (to, from, next) => {
         next({name: 'login'})
     }
   }else{
-    if(to.name === 'login' && store.getters['auth/hasToken']){
+    if((to.name === 'login' || to.name === 'sign') && store.getters['auth/hasToken']){
         next({ name: 'home' })
     }else{
         next()

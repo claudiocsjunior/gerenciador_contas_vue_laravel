@@ -104,6 +104,8 @@
       <path value="$PROJECT_DIR$/gerenciador_contas_back/vendor/sebastian/recursion-context" />
       <path value="$PROJECT_DIR$/gerenciador_contas_back/vendor/sebastian/global-state" />
       <path value="$PROJECT_DIR$/gerenciador_contas_back/vendor/sebastian/diff" />
+      <path value="$PROJECT_DIR$/gerenciador_contas_back/vendor/barryvdh/laravel-cors" />
+      <path value="$PROJECT_DIR$/gerenciador_contas_back/vendor/asm89/stack-cors" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />

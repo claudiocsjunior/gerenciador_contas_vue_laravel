@@ -22,12 +22,12 @@ const _axios = axios.create(config);
 
 _axios.interceptors.request.use(
   function(config) {
-    // const token = storage.getLocalToken();
-    //
-    // if ( token != null ) {
-    //   config.headers.common['Authorization'] = 'Bearer '+ token;
-    //   config.headers.common['accept'] = 'application/json';
-    // }
+    const token = storage.getLocalToken();
+
+    if ( token != null ) {
+      config.headers.common['Authorization'] = 'Bearer '+ token;
+      config.headers.common['accept'] = 'application/json';
+    }
 
     return config;
   },

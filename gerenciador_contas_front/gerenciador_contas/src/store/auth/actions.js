@@ -60,18 +60,13 @@ export const ActionCheckToken = ({dispatch, state}) => {
 export  const ActionDetails = ({dispatch, state}) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const headers = {
-                "Access-Control-Allow-Origin": "*",
-                'Accept': 'application/json',
-                'Authorization': 'Bearer' + state.token
-            }
             console.log(state.token)
-            const { data: { user } } = await axios.post('/details', {}, headers).then(({ data }) => {return data;});
-            dispatch('ActionSetUser', user)
+            const data = await axios.post('/details').then(({ data }) => {return data;});
+            dispatch('ActionSetUser', data.user)
             resolve()
         } catch (err) {
             console.log("fiz logout")
-            //dispatch('ActionSignOut')
+            dispatch('ActionSignOut')
             reject(err)
         }
     })

@@ -127,6 +127,8 @@
       <path value="$PROJECT_DIR$/gerenciador_contas_back/vendor/sebastian/recursion-context" />
       <path value="$PROJECT_DIR$/gerenciador_contas_back/vendor/sebastian/global-state" />
       <path value="$PROJECT_DIR$/gerenciador_contas_back/vendor/sebastian/diff" />
+      <path value="$PROJECT_DIR$/gerenciador_contas_back/vendor/barryvdh/laravel-cors" />
+      <path value="$PROJECT_DIR$/gerenciador_contas_back/vendor/asm89/stack-cors" />
     </include_path>
   </component>
   <component name="ProjectId" id="1TAdxRoWJD1anK7XtAhLH2enYf6" />
@@ -164,7 +166,8 @@
       <option name="presentableId" value="Default" />
       <updated>1572907079636</updated>
       <workItem from="1572907080792" duration="10463000" />
-      <workItem from="1572994235420" duration="11624000" />
+      <workItem from="1572994235420" duration="11682000" />
+      <workItem from="1574203026828" duration="8357000" />
     </task>
     <servers />
   </component>
@@ -189,12 +192,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/gerenciador_contas_back/app/Http/Controllers/API/UserController.php</url>
-          <line>55</line>
+          <line>60</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/gerenciador_contas_back/app/Http/Controllers/API/UserController.php</url>
-          <line>78</line>
+          <line>87</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">

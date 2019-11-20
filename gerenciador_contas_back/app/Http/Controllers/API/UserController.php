@@ -24,16 +24,18 @@ class UserController extends Controller
         if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){
             $user = Auth::user();
             $token =  $user->createToken('GerenciadorContas')->accessToken;
-            return $this->response([
-                'message' => "Login realizado com sucesso",
-                'token' => $token,
-                'user' => $user
-            ], $this->successStatus);
+            return response(
+                [
+                    'message' => "Login realizado com sucesso",
+                    'token' => $token,
+                    'user' => $user
+                ], $this->successStatus);
         }
         else{
-            return $this->response([
-                'error' => "Não foi possivel fazer o login, email ou senha não confere.",
-            ], 401);
+            return response(
+                [
+                    'error' => "Não foi possivel fazer o login, email ou senha não confere.",
+                ], 401);
         }
     }
     /**
@@ -50,11 +52,17 @@ class UserController extends Controller
             'c_password' => 'required|same:password',
         ]);
         if ($validator->fails()) {
-            return $this->response(['error'=>$validator->errors()], 401);
+            return response(
+                [
+                    'error'=>$validator->errors()
+                ], 401);
         }
 
         if(User::where('email', $request->get('email'))->get()->count()){
-            return $this->response(['error'=>'Já existe um usuário com o email informado.'], 401);
+            return response(
+                [
+                    'error'=>'Já existe um usuário com o email informado.'
+                ], 401);
         }
 
 
@@ -63,11 +71,12 @@ class UserController extends Controller
         $user = User::create($input);
         $token =  $user->createToken('GerenciadorContas')-> accessToken;
         $user = $user->name;
-        return $this->response([
-            'message' => "Login realizado com sucesso",
-            'token' => $token,
-            'user' => $user
-        ], $this->successStatus);
+        return response(
+            [
+                'message' => "Login realizado com sucesso",
+                'token' => $token,
+                'user' => $user
+            ], $this->successStatus);
     }
     /**
      * details api
@@ -77,9 +86,11 @@ class UserController extends Controller
     public function details()
     {
         $user = Auth::user();
-        return $this->response([
-            'message' => "User retornado com sucesso",
-            'user' => $user
-        ], $this->successStatus);
+        return response(
+            [
+                'message' => "User retornado com sucesso",
+                'user' => $user
+            ], 200);
+
     }
 }
