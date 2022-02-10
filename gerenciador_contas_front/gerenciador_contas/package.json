@@ -24,7 +24,7 @@
     "@vue/cli-plugin-vuex": "^4.0.0",
     "@vue/cli-service": "^4.0.0",
     "axios": "^0.18.0",
-    "node-sass": "^4.12.0",
+    "node-sass": "^7.0.0",
     "sass-loader": "^8.0.0",
     "vue-cli-plugin-axios": "0.0.4",
     "vue-cli-plugin-bootstrap": "^1.0.0-alpha.1",
